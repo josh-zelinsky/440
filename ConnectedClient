@@ -21,6 +21,11 @@ public class ConnectedClient
 			//yea right
 		}
 	}
+	
+	public void addedByte(int index)
+	{
+		this.myBytes[index] = true;
+ 	}
 	public void sendMessage(String msg)
 	{
 		this.output.println(msg);
@@ -30,9 +35,14 @@ public class ConnectedClient
 		return this.input.nextLine();
 	}
 	
-	public void connect(SocketAddress localhost)
+	public void sendByte(int theByte) throws Exception
 	{
-		
+		this.theSocket.getOutputStream().write(theByte);
+	}
+	
+	public int readByte() throws Exception
+	{
+		return this.theSocket.getInputStream().read();
 	}
 	
 }
